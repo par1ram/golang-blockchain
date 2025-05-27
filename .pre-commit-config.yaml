@@ -22,7 +22,7 @@ repos:
     hooks:
       - id: go-fmt
       - id: go-vet
-      - id: go-lint # Using go-lint hook which might use golangci-lint internally or can be configured
+      - id: go-lint
       - id: go-unit-tests
         args: ['-run=^Test[^R]']
       - id: go-mod-tidy
