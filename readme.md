@@ -10,8 +10,8 @@
 
 ### Линтинг
 
-!(lint.png 'Линтинг')
+[]!(lint.png 'Линтинг')
 
 ### Пре-коммит
 
-!(precommit.png 'pre commit')
+[]!(precommit.png 'pre commit')
