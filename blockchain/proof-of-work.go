@@ -10,13 +10,16 @@ import (
 	"math/big"
 )
 
-const Difficulty = 18
+// Difficulty представляет сложность алгоритма Proof of Work.
+const Difficulty = 10
 
+// ProofOfWork представляет Proof of Work для блока.
 type ProofOfWork struct {
 	Block  *Block
 	Target *big.Int
 }
 
+// NewProofOfWork создает и возвращает новый ProofOfWork для блока.
 func NewProofOfWork(b *Block) *ProofOfWork {
 	target := big.NewInt(1)
 	target.Lsh(target, uint(256-Difficulty))
@@ -24,6 +27,7 @@ func NewProofOfWork(b *Block) *ProofOfWork {
 	return &ProofOfWork{b, target}
 }
 
+// InItData подготавливает данные для хеширования.
 func (pow *ProofOfWork) InItData(nonce int) []byte {
 	return bytes.Join(
 		[][]byte{
@@ -36,6 +40,7 @@ func (pow *ProofOfWork) InItData(nonce int) []byte {
 	)
 }
 
+// Run выполняет алгоритм Proof of Work и возвращает валидный nonce и хэш блока.
 func (pow *ProofOfWork) Run() (int, []byte) {
 	var intHash big.Int
 	var hash [32]byte
@@ -60,6 +65,7 @@ func (pow *ProofOfWork) Run() (int, []byte) {
 	return nonce, hash[:]
 }
 
+// Validate проверяет Proof of Work блока.
 func (pow *ProofOfWork) Validate() bool {
 	var intHash big.Int
 
@@ -70,6 +76,7 @@ func (pow *ProofOfWork) Validate() bool {
 	return intHash.Cmp(pow.Target) == -1
 }
 
+// ToHex преобразует int64 в срез байтов.
 func ToHex(num int64) []byte {
 	buff := new(bytes.Buffer)
 	err := binary.Write(buff, binary.BigEndian, num)
