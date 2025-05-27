@@ -7,3 +7,6 @@ errcheck ./...
 staticcheck ./...
 go mod tidy
 pre-commit install
+
+![Альтернативный текст](lints.png 'Линтинг')
+![Альтернативный текст](pre-commit.png 'pre commit')
